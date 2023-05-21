@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+  <!-- We import arjs version without NFT but with marker + location based support -->
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <!-- SweetAlert -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  <link href="./style.css" rel="stylesheet" />
+
+  <script src="./js/markerHandler.js"></script>
+  <script src="./js/addButtons.js"></script>
+
+</head>
+
+<body style="margin : 0px; overflow: hidden;">
+  <a-scene id="main-scene" vr-mode-ui="enabled: false" embedded
+    arjs="sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960;debugUIEnabled: false;"
+    gesture-detector createbuttons>
+    <!-- Camera -->
+    <a-entity camera></a-entity>
+
+    <a-assets>
+      <a-asset-item id="train_model" src="./assets/scene.gltf"></a-asset-item>
+    </a-assets>
+
+    <a-marker type="pattern" id="train-marker" url="assets/pattern-toyMarker.patt" cursor="rayOrigin:mouse"
+      markerhandler>
+
+      <a-entity id="train-3d-model" gltf-model="#train_model" position="-2 0 0" scale="0.5 0.5 0.5" gesture-handler>
+      </a-entity>
+
+      <a-plane color="#3dbeff" position="0 0 0" width="1.5" height="1.5" rotation="-90 0 0">
+        <a-plane position="0 0.90 0.02" width="1.49" height="0.3" rotation="0 0 0" color="#eb3464">
+
+          <a-entity position="0 0 0.1" rotation="0 0 0" text="value:Toy Train; font:dejavu; color:black; width:1.8;
+            height:1; align:center;">
+          </a-entity>
+        </a-plane>
+
+        <a-entity position="0 0 0.1" rotation="0 0 0" text="value:This is a toy train ; 
+              font:dejavu; color:black; width:2; align:center;">
+        </a-entity>
+      </a-plane>
+    </a-marker>
+
+  </a-scene>
+  <div id="button-div"></div>
+</body>
+
+</html>
